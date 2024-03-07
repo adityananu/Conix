@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import useAxios from "../Hooks/useAxios";
 import CarouselCard from "./CarouselCard";
+import InformationBox from "./InformationBox";
 
 function CryptoBody() {
   const [data, setData] = useState([]);
@@ -26,8 +27,8 @@ function CryptoBody() {
     script.async = true;
     script.innerHTML = `
         {
-            "width": "610",
-            "height": "610",
+          "width": "710",
+          "height": "610",          
           "symbol": "BITSTAMP:BTCUSD",
           "interval": "D",
           "timezone": "Etc/UTC",
@@ -35,8 +36,9 @@ function CryptoBody() {
           "style": "2",
           "locale": "en",
           "enable_publishing": false,
+          "hide_top_toolbar": true,
           "hide_legend": true,
-          "allow_symbol_change": true,
+          "save_image": false,
           "calendar": false,
           "hide_volume": true,
           "support_host": "https://www.tradingview.com"
@@ -48,10 +50,14 @@ function CryptoBody() {
     };
   }, []); 
 
+
   return (
-    <div className="bg-white h-[200vh] rounded-lg">
+    <div className="  bg-white h-[200vh] rounded-lg">
         {/* Trading view chart  */}
-      <div className="tradingview-widget-container" ref={container}>
+
+        <div className=" w-full my-auto">
+        <h1>Bitcoin</h1>
+      <div className="tradingview-widget-container hidden mx-auto md:block" ref={container}>
         <div className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
         <div className="tradingview-widget-copyright">
           <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
@@ -59,6 +65,10 @@ function CryptoBody() {
           </a>
         </div>
       </div>
+
+        </div>
+
+      <InformationBox />
 
       <div>
         <h1 className="font-semibold text-xl mb-3 ml-2">You May Also Like</h1>
